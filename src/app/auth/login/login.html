@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>Welcome Back. Please Login</h2>
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" class="form-horizontal">
+      <!-- Hidden ID Field -->
+      <div class="form-group" hidden="true">
+        <input type="text" hidden="true" class="form-control" id="id" name="id"/>
+      </div>
+
+      <!-- First Name Field -->
+      <div class="form-group" [ngClass]="{'has-feedback': username?.invalid && username?.touched}">
+        <label for="username" class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-10">
+          <input 
+            type="text" 
+            class="form-control" 
+            id="username" 
+            name="username" 
+            [(ngModel)]="model.username" 
+            #username="ngModel" 
+            minlength="1" 
+            maxlength="30" 
+            pattern="^[a-zA-Z]*$" 
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Last Name Field -->
+      <div class="form-group" [ngClass]="{'has-feedback': lastName?.invalid && lastName?.touched}">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            name="password" 
+            [(ngModel)]="model.password" 
+            #lastName="ngModel" 
+            minlength="1" 
+            maxlength="30"  
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-default" type="button" (click)="goBack()">Back</button>
+          <button class="btn btn-success" type="submit" [disabled]="signupForm.invalid">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
